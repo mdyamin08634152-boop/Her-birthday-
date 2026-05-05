@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Lifetime Timer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --rose: #b07070;
+    --deep-rose: #8e444d;
+    --cream: #121212;
+    --text: #e0c2c5;
+    --gold: #b38b5d;
+  }
+
+  html, body {
+    width: 100%; min-height: 100vh;
+    background: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: -1;
+    background:
+      radial-gradient(ellipse at 20% 20%, #3d2528 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, #2d1b1e 0%, transparent 60%),
+      linear-gradient(160deg, #121212 0%, #1a1a1a 50%, #0d0d0d 100%);
+  }
+
+  main {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 5rem 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .header { text-align: center; }
+  .header-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: var(--deep-rose);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  /* ── TIMER CARD ── */
+  .timer-card {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(176, 112, 112, 0.2);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
+    width: 100%; max-width: 500px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  }
+  .timer-label {
+    font-size: 0.9rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--rose);
+    margin-bottom: 2rem;
+  }
+  .timer-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-bottom: 2rem;
+  }
+  .timer-unit { display: flex; flex-direction: column; align-items: center; }
+  .timer-num {
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--deep-rose);
+    line-height: 1;
+  }
+  .timer-unit-label {
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--rose);
+    margin-top: 5px;
+  }
+
+  .timer-date {
+    font-style: italic; font-size: 1rem;
+    color: var(--gold); margin-top: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="header">
+    <h1 class="header-title">My Journey on Earth</h1>
+  </div>
+
+  <div class="timer-card">
+    <p class="timer-label">Time since I was born</p>
+    
+    <div class="timer-grid">
+      <div class="timer-unit"><span class="timer-num" id="years">0</span><span class="timer-unit-label">Years</span></div>
+      <div class="timer-unit"><span class="timer-num" id="months">0</span><span class="timer-unit-label">Months</span></div>
+      <div class="timer-unit"><span class="timer-num" id="days">0</span><span class="timer-unit-label">Days</span></div>
+    </div>
+
+    <div class="timer-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="timer-unit"><span class="timer-num" id="hours">00</span><span class="timer-unit-label">Hours</span></div>
+      <div class="timer-unit"><span class="timer-num" id="minutes">00</span><span class="timer-unit-label">Mins</span></div>
+      <div class="timer-unit"><span class="timer-num" id="seconds">00</span><span class="timer-unit-label">Secs</span></div>
+    </div>
+
+    <p class="timer-date">Born: June 1, 2007 ✨</p>
+  </div>
+</main>
+
+<script>
+function updateTimer() {
+  const birthDate = new Date('2007-06-01T00:00:00');
+  const now = new Date();
+  
+  let years = now.getFullYear() - birthDate.getFullYear();
+  let months = now.getMonth() - birthDate.getMonth();
+  let days = now.getDate() - birthDate.getDate();
+
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const totalMs = now - birthDate;
+  const h = Math.floor((totalMs / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((totalMs / (1000 * 60)) % 60);
+  const s = Math.floor((totalMs / 1000) % 60);
+
+  document.getElementById('years').textContent = years;
+  document.getElementById('months').textContent = months;
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = String(h).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+</body>
+</html>
