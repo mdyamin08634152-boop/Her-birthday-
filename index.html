@@ -7,22 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Energetic & Bright Palette */
-    --bg-top: #ff8c00; /* Bright Orange */
-    --bg-bottom: #8a2be2; /* Electric Purple */
-    --card: rgba(255, 255, 255, 0.15);
-    --text-main: #ffffff;
-    --accent: #fff700; /* Neon Yellow */
+    --text-white: #ffffff;
+    --accent-yellow: #fff700;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    /* Energetic animated gradient */
-    background: linear-gradient(-45deg, #ff3e81, #ff8c00, #8a2be2, #20b2aa);
+    /* Energetic & Vibrant Animated Gradient */
+    background: linear-gradient(-45deg, #ff1f71, #ff8c00, #9d00ff, #00d2ff);
     background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
-    color: var(--text-main);
+    animation: energyFlow 8s ease infinite;
+    color: var(--text-white);
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
@@ -31,13 +27,13 @@
     overflow: hidden;
   }
 
-  @keyframes gradientMove {
+  @keyframes energyFlow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
 
-  /* Shimmering Overlay */
+  /* Overlay Shimmer */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -49,7 +45,7 @@
 
   .title {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(2.8rem, 10vw, 4.5rem);
+    font-size: clamp(2.8rem, 10vw, 4.2rem);
     color: white;
     margin-bottom: 5px;
     text-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -61,16 +57,16 @@
     letter-spacing: 4px;
     text-transform: uppercase;
     margin-bottom: 30px;
-    color: var(--accent);
+    color: var(--accent-yellow);
   }
 
   .timer-card {
-    background: var(--card);
-    backdrop-filter: blur(12px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 35px;
     padding: 40px 15px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
   }
 
   .label {
@@ -78,7 +74,7 @@
     letter-spacing: 3px;
     font-size: 0.8rem;
     margin-bottom: 25px;
-    opacity: 0.9;
+    font-weight: 600;
   }
 
   .grid {
@@ -93,39 +89,40 @@
     font-weight: 800;
     color: white;
     display: block;
-    text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    line-height: 1;
   }
 
   .unit-label {
     font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-top: 5px;
+    color: var(--accent-yellow);
+    margin-top: 8px;
   }
 
   .footer-date {
-    margin-top: 25px;
+    margin-top: 30px;
     font-weight: 700;
     font-size: 1.2rem;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
     padding-top: 20px;
   }
 
-  /* FLOATING EMOJIS - Faster and bigger for energy */
+  /* Floating Emojis: 👸🎈✨🎉🎊🎂 */
   .emoji {
     position: absolute;
     bottom: -60px;
     z-index: 1;
+    pointer-events: none;
     animation: floatUp linear infinite;
     filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
   }
 
   @keyframes floatUp {
     0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
-    20% { opacity: 1; transform: translateY(-20vh) rotate(45deg) scale(1.2); }
+    20% { opacity: 1; transform: translateY(-20vh) rotate(45deg) scale(1.3); }
     80% { opacity: 1; }
-    100% { transform: translateY(-115vh) rotate(90deg) scale(0.8); opacity: 0; }
+    100% { transform: translateY(-115vh) rotate(90deg) scale(0.7); opacity: 0; }
   }
 </style>
 </head>
@@ -136,7 +133,7 @@
   <p class="subtitle">Her Joyful Journey</p>
   
   <div class="timer-card">
-    <p class="label">Time since she blessed the world</p>
+    <p class="label">Time since birth</p>
     
     <div class="grid">
       <div><span class="unit-num" id="y">0</span><div class="unit-label">Years</div></div>
@@ -144,7 +141,7 @@
       <div><span class="unit-num" id="d">0</span><div class="unit-label">Days</div></div>
     </div>
 
-    <div class="grid">
+    <div class="grid" style="margin-bottom: 0;">
       <div><span class="unit-num" id="h">00</span><div class="unit-label">Hours</div></div>
       <div><span class="unit-num" id="min">00</span><div class="unit-label">Mins</div></div>
       <div><span class="unit-num" id="sec">00</span><div class="unit-label">Secs</div></div>
@@ -189,12 +186,12 @@ function spawnEmoji() {
   e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
   e.style.left = Math.random() * 100 + 'vw';
   e.style.fontSize = (Math.random() * 30 + 25) + 'px';
-  const duration = 4 + Math.random() * 4; // Faster animation
+  const duration = 4 + Math.random() * 3; 
   e.style.animationDuration = duration + 's';
   document.body.appendChild(e);
   setTimeout(() => e.remove(), duration * 1000);
 }
-setInterval(spawnEmoji, 500); // More frequent emojis
+setInterval(spawnEmoji, 400); 
 </script>
 
 </body>
