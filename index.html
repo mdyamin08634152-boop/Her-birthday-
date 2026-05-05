@@ -14,7 +14,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    /* Energetic & Vibrant Animated Gradient */
     background: linear-gradient(-45deg, #ff1f71, #ff8c00, #9d00ff, #00d2ff);
     background-size: 400% 400%;
     animation: energyFlow 8s ease infinite;
@@ -33,31 +32,14 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* Overlay Shimmer */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 80%);
-    z-index: -1;
-  }
-
   main { width: 100%; max-width: 480px; padding: 20px; text-align: center; z-index: 2; }
 
   .title {
     font-family: 'Dancing Script', cursive;
     font-size: clamp(2.8rem, 10vw, 4.2rem);
     color: white;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
     text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    color: var(--accent-yellow);
   }
 
   .timer-card {
@@ -65,27 +47,28 @@
     backdrop-filter: blur(15px);
     border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 35px;
-    padding: 40px 15px;
+    padding: 30px 15px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
   }
 
   .label {
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 0.8rem;
-    margin-bottom: 25px;
-    font-weight: 600;
+    font-size: 0.75rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--accent-yellow);
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 10px;
   }
 
   .unit-num {
-    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-size: clamp(2rem, 7vw, 2.8rem);
     font-weight: 800;
     color: white;
     display: block;
@@ -93,35 +76,33 @@
   }
 
   .unit-label {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--accent-yellow);
-    margin-top: 8px;
+    color: white;
+    margin-top: 5px;
+    opacity: 0.9;
   }
 
   .footer-date {
-    margin-top: 30px;
+    margin-top: 20px;
     font-weight: 700;
-    font-size: 1.2rem;
-    border-top: 2px solid rgba(255, 255, 255, 0.3);
-    padding-top: 20px;
+    font-size: 1.1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 15px;
   }
 
-  /* Floating Emojis: 👸🎈✨🎉🎊🎂 */
   .emoji {
     position: absolute;
     bottom: -60px;
     z-index: 1;
     pointer-events: none;
     animation: floatUp linear infinite;
-    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
   }
 
   @keyframes floatUp {
     0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
     20% { opacity: 1; transform: translateY(-20vh) rotate(45deg) scale(1.3); }
-    80% { opacity: 1; }
     100% { transform: translateY(-115vh) rotate(90deg) scale(0.7); opacity: 0; }
   }
 </style>
@@ -130,54 +111,78 @@
 
 <main>
   <h1 class="title">Samia Khan Kajol</h1>
-  <p class="subtitle">Her Joyful Journey</p>
   
   <div class="timer-card">
-    <p class="label">Time since birth</p>
-    
+    <p class="label">Time Since Birth</p>
     <div class="grid">
       <div><span class="unit-num" id="y">0</span><div class="unit-label">Years</div></div>
       <div><span class="unit-num" id="m">0</span><div class="unit-label">Months</div></div>
       <div><span class="unit-num" id="d">0</span><div class="unit-label">Days</div></div>
     </div>
-
-    <div class="grid" style="margin-bottom: 0;">
+    <div class="grid" style="margin-top: 15px;">
       <div><span class="unit-num" id="h">00</span><div class="unit-label">Hours</div></div>
       <div><span class="unit-num" id="min">00</span><div class="unit-label">Mins</div></div>
       <div><span class="unit-num" id="sec">00</span><div class="unit-label">Secs</div></div>
     </div>
-
     <p class="footer-date">Born: June 1, 2008 👸</p>
+  </div>
+
+  <div class="timer-card">
+    <p class="label">Upcoming Birthday</p>
+    <div class="grid">
+      <div><span class="unit-num" id="next-d">00</span><div class="unit-label">Days</div></div>
+      <div><span class="unit-num" id="next-h">00</span><div class="unit-label">Hours</div></div>
+      <div><span class="unit-num" id="next-m">00</span><div class="unit-label">Mins</div></div>
+    </div>
+    <div style="margin-top: 10px;">
+        <span class="unit-num" id="next-s" style="font-size: 1.5rem;">00</span>
+        <div class="unit-label">Seconds Left</div>
+    </div>
   </div>
 </main>
 
 <script>
-function updateTimer() {
-  const birth = new Date('2008-06-01T00:00:00');
+function updateTimers() {
+  const birthDate = new Date('2008-06-01T00:00:00');
   const now = new Date();
   
-  let y = now.getFullYear() - birth.getFullYear();
-  let m = now.getMonth() - birth.getMonth();
-  let d = now.getDate() - birth.getDate();
-
+  // Life Timer Logic
+  let y = now.getFullYear() - birthDate.getFullYear();
+  let m = now.getMonth() - birthDate.getMonth();
+  let d = now.getDate() - birthDate.getDate();
   if (d < 0) { m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
   if (m < 0) { y--; m += 12; }
 
-  const diff = now - birth;
-  const hrs = Math.floor((diff / 3600000) % 24);
-  const mins = Math.floor((diff / 60000) % 60);
-  const secs = Math.floor((diff / 1000) % 60);
+  const diff = now - birthDate;
+  const h = Math.floor((diff / 3600000) % 24);
+  const min = Math.floor((diff / 60000) % 60);
+  const sec = Math.floor((diff / 1000) % 60);
 
   document.getElementById('y').innerText = y;
   document.getElementById('m').innerText = m;
   document.getElementById('d').innerText = d;
-  document.getElementById('h').innerText = String(hrs).padStart(2, '0');
-  document.getElementById('min').innerText = String(mins).padStart(2, '0');
-  document.getElementById('sec').innerText = String(secs).padStart(2, '0');
+  document.getElementById('h').innerText = String(h).padStart(2, '0');
+  document.getElementById('min').innerText = String(min).padStart(2, '0');
+  document.getElementById('sec').innerText = String(sec).padStart(2, '0');
+
+  // Upcoming Birthday Logic
+  let nextBday = new Date(now.getFullYear(), 5, 1); // June 1st
+  if (now > nextBday) { nextBday.setFullYear(now.getFullYear() + 1); }
+  
+  const timeToBday = nextBday - now;
+  const nD = Math.floor(timeToBday / (1000 * 60 * 60 * 24));
+  const nH = Math.floor((timeToBday % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const nM = Math.floor((timeToBday % (1000 * 60 * 60)) / (1000 * 60));
+  const nS = Math.floor((timeToBday % (1000 * 60)) / 1000);
+
+  document.getElementById('next-d').innerText = String(nD).padStart(2, '0');
+  document.getElementById('next-h').innerText = String(nH).padStart(2, '0');
+  document.getElementById('next-m').innerText = String(nM).padStart(2, '0');
+  document.getElementById('next-s').innerText = String(nS).padStart(2, '0');
 }
 
-setInterval(updateTimer, 1000);
-updateTimer();
+setInterval(updateTimers, 1000);
+updateTimers();
 
 const emojis = ['👸','🎈','✨','🎉','🎊','🎂'];
 function spawnEmoji() {
@@ -186,12 +191,12 @@ function spawnEmoji() {
   e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
   e.style.left = Math.random() * 100 + 'vw';
   e.style.fontSize = (Math.random() * 30 + 25) + 'px';
-  const duration = 4 + Math.random() * 3; 
+  const duration = 4 + Math.random() * 3;
   e.style.animationDuration = duration + 's';
   document.body.appendChild(e);
   setTimeout(() => e.remove(), duration * 1000);
 }
-setInterval(spawnEmoji, 400); 
+setInterval(spawnEmoji, 400);
 </script>
 
 </body>
