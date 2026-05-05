@@ -4,26 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Samia Khan Kajol ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-top: #1a1a1a;
-    --bg-bottom: #050505;
-    --card: rgba(25, 25, 25, 0.8);
-    --rose: #b07070;
-    --deep-rose: #8e444d;
-    --text: #e0c2c5;
-    --gold: #d4a574;
+    /* Energetic & Bright Palette */
+    --bg-top: #ff8c00; /* Bright Orange */
+    --bg-bottom: #8a2be2; /* Electric Purple */
+    --card: rgba(255, 255, 255, 0.15);
+    --text-main: #ffffff;
+    --accent: #fff700; /* Neon Yellow */
   }
 
-  /* RESET */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* NO IMAGE - JUST GRADIENT */
   body {
-    background: linear-gradient(135deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-    color: var(--text);
-    font-family: 'Cormorant Garamond', serif;
+    /* Energetic animated gradient */
+    background: linear-gradient(-45deg, #ff3e81, #ff8c00, #8a2be2, #20b2aa);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,82 +31,101 @@
     overflow: hidden;
   }
 
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Shimmering Overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 80%);
+    z-index: -1;
+  }
+
   main { width: 100%; max-width: 480px; padding: 20px; text-align: center; z-index: 2; }
 
   .title {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(2.5rem, 8vw, 3.8rem);
-    color: var(--gold);
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
+    color: white;
     margin-bottom: 5px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
   }
 
   .subtitle {
     font-size: 0.9rem;
-    color: var(--rose);
-    margin-bottom: 30px;
-    letter-spacing: 3px;
+    font-weight: 700;
+    letter-spacing: 4px;
     text-transform: uppercase;
+    margin-bottom: 30px;
+    color: var(--accent);
   }
 
   .timer-card {
     background: var(--card);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 165, 116, 0.15);
-    border-radius: 25px;
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 35px;
     padding: 40px 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
   }
 
   .label {
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 0.7rem;
-    color: var(--rose);
+    font-size: 0.8rem;
     margin-bottom: 25px;
+    opacity: 0.9;
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 25px;
   }
 
   .unit-num {
-    font-size: clamp(2.2rem, 7vw, 2.8rem);
-    color: var(--deep-rose);
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 800;
+    color: white;
     display: block;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
 
   .unit-label {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-top: 5px;
   }
 
   .footer-date {
     margin-top: 25px;
-    color: var(--gold);
-    font-style: italic;
-    border-top: 1px solid rgba(212, 165, 116, 0.1);
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
     padding-top: 20px;
   }
 
-  /* FLOATING EMOJIS */
+  /* FLOATING EMOJIS - Faster and bigger for energy */
   .emoji {
     position: absolute;
-    bottom: -50px;
-    opacity: 0;
+    bottom: -60px;
     z-index: 1;
     animation: floatUp linear infinite;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
   }
 
   @keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    20% { opacity: 0.7; }
-    80% { opacity: 0.4; }
-    100% { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
+    0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+    20% { opacity: 1; transform: translateY(-20vh) rotate(45deg) scale(1.2); }
+    80% { opacity: 1; }
+    100% { transform: translateY(-115vh) rotate(90deg) scale(0.8); opacity: 0; }
   }
 </style>
 </head>
@@ -114,10 +133,10 @@
 
 <main>
   <h1 class="title">Samia Khan Kajol</h1>
-  <p class="subtitle">Her Journey Since Birth</p>
+  <p class="subtitle">Her Joyful Journey</p>
   
   <div class="timer-card">
-    <p class="label">Time Spent on Earth</p>
+    <p class="label">Time since she blessed the world</p>
     
     <div class="grid">
       <div><span class="unit-num" id="y">0</span><div class="unit-label">Years</div></div>
@@ -137,7 +156,6 @@
 
 <script>
 function updateTimer() {
-  // SET TO 2008
   const birth = new Date('2008-06-01T00:00:00');
   const now = new Date();
   
@@ -164,20 +182,19 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 updateTimer();
 
-// EMOJIS: 👸🎈✨🎉🎊🎂
 const emojis = ['👸','🎈','✨','🎉','🎊','🎂'];
 function spawnEmoji() {
   const e = document.createElement('div');
   e.className = 'emoji';
   e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
   e.style.left = Math.random() * 100 + 'vw';
-  e.style.fontSize = (Math.random() * 20 + 20) + 'px';
-  const duration = 6 + Math.random() * 6;
+  e.style.fontSize = (Math.random() * 30 + 25) + 'px';
+  const duration = 4 + Math.random() * 4; // Faster animation
   e.style.animationDuration = duration + 's';
   document.body.appendChild(e);
   setTimeout(() => e.remove(), duration * 1000);
 }
-setInterval(spawnEmoji, 800);
+setInterval(spawnEmoji, 500); // More frequent emojis
 </script>
 
 </body>
