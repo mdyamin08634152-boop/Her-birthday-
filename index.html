@@ -146,7 +146,6 @@ function updateTimers() {
   const birthDate = new Date('2008-06-01T00:00:00');
   const now = new Date();
   
-  // Life Timer Logic
   let y = now.getFullYear() - birthDate.getFullYear();
   let m = now.getMonth() - birthDate.getMonth();
   let d = now.getDate() - birthDate.getDate();
@@ -165,8 +164,7 @@ function updateTimers() {
   document.getElementById('min').innerText = String(min).padStart(2, '0');
   document.getElementById('sec').innerText = String(sec).padStart(2, '0');
 
-  // Upcoming Birthday Logic
-  let nextBday = new Date(now.getFullYear(), 5, 1); // June 1st
+  let nextBday = new Date(now.getFullYear(), 5, 1);
   if (now > nextBday) { nextBday.setFullYear(now.getFullYear() + 1); }
   
   const timeToBday = nextBday - now;
