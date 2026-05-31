@@ -1,201 +1,720 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samia Khan Kajol ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --text-white: #ffffff;
-    --accent-yellow: #fff700;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samia Khan Kajol ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0410;
+      --bg2: #110820;
+      --rose: #e8325a;
+      --gold: #f0c060;
+      --pink: #f472b6;
+      --lavender: #c084fc;
+      --glow: rgba(232, 50, 90, 0.4);
+      --text: #f8e8f0;
+      --muted: #b89aaa;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    background: linear-gradient(-45deg, #ff1f71, #ff8c00, #9d00ff, #00d2ff);
-    background-size: 400% 400%;
-    animation: energyFlow 8s ease infinite;
-    color: var(--text-white);
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-  @keyframes energyFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+    /* ── STARS BACKGROUND ── */
+    #stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--d) ease-in-out infinite alternate;
+      opacity: 0;
+    }
+    @keyframes twinkle {
+      0%   { opacity: 0; transform: scale(0.5); }
+      100% { opacity: var(--o); transform: scale(1.2); }
+    }
 
-  main { width: 100%; max-width: 480px; padding: 20px; text-align: center; z-index: 2; }
+    /* ── FLOATING PETALS ── */
+    #petals {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -40px;
+      font-size: var(--fs);
+      animation: fall var(--dur) linear infinite;
+      animation-delay: var(--delay);
+      opacity: 0.7;
+    }
+    @keyframes fall {
+      0%   { transform: translateX(0) rotate(0deg); opacity: 0.8; top: -40px; }
+      100% { transform: translateX(var(--drift)) rotate(360deg); opacity: 0; top: 110vh; }
+    }
 
-  .title {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(2.8rem, 10vw, 4.2rem);
-    color: white;
-    margin-bottom: 25px;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
+    /* ── MAIN LAYOUT ── */
+    .page {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+    }
 
-  .timer-card {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 35px;
-    padding: 30px 15px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    margin-bottom: 20px;
-  }
+    /* ── HEADER ── */
+    .heart-icon {
+      font-size: 2.5rem;
+      animation: pulse 1.6s ease-in-out infinite;
+      display: block;
+      text-align: center;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 12px var(--rose));
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
 
-  .label {
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.75rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-    color: var(--accent-yellow);
-  }
+    h1.name {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      color: var(--text);
+      text-align: center;
+      text-shadow: 0 0 30px var(--glow), 0 0 60px rgba(232,50,90,0.2);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
 
-  .unit-num {
-    font-size: clamp(2rem, 7vw, 2.8rem);
-    font-weight: 800;
-    color: white;
-    display: block;
-    line-height: 1;
-  }
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 10px 0 30px;
+      width: min(500px, 90vw);
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rose), transparent);
+    }
+    .divider-heart { color: var(--rose); font-size: 0.9rem; }
 
-  .unit-label {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: white;
-    margin-top: 5px;
-    opacity: 0.9;
-  }
+    /* ── CARDS ── */
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(232,50,90,0.2);
+      border-radius: 20px;
+      padding: 28px 32px;
+      width: min(520px, 92vw);
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rose), transparent);
+    }
 
-  .footer-date {
-    margin-top: 20px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    padding-top: 15px;
-  }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 18px;
+      text-align: center;
+    }
 
-  .emoji {
-    position: absolute;
-    bottom: -60px;
-    z-index: 1;
-    pointer-events: none;
-    animation: floatUp linear infinite;
-  }
+    /* ── COUNTERS ── */
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      text-align: center;
+    }
+    .time-block {
+      background: rgba(232,50,90,0.08);
+      border: 1px solid rgba(232,50,90,0.15);
+      border-radius: 12px;
+      padding: 14px 8px;
+    }
+    .time-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+      line-height: 1;
+      text-shadow: 0 0 20px var(--glow);
+    }
+    .time-label {
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+    }
 
-  @keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
-    20% { opacity: 1; transform: translateY(-20vh) rotate(45deg) scale(1.3); }
-    100% { transform: translateY(-115vh) rotate(90deg) scale(0.7); opacity: 0; }
-  }
-</style>
+    /* countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      text-align: center;
+    }
+    .cd-block {
+      background: rgba(244,114,182,0.08);
+      border: 1px solid rgba(244,114,182,0.2);
+      border-radius: 12px;
+      padding: 14px 8px;
+    }
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--pink);
+      display: block;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(244,114,182,0.5);
+    }
+    .cd-label {
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ── BORN INFO ── */
+    .born-info {
+      text-align: center;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-top: 16px;
+    }
+    .born-info span { color: var(--text); }
+
+    /* ── LOVE NOTE ── */
+    .love-note {
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      text-align: center;
+    }
+    .love-note em { color: var(--text); font-style: normal; }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: rgba(184,154,170,0.4);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+    }
+
+    /* ═══════════════════════════════════════
+       BIRTHDAY MODE — June 1 only
+    ═══════════════════════════════════════ */
+    body.is-birthday {
+      --bg: #0d0008;
+      --bg2: #1a0015;
+      --rose: #ff2d6b;
+      --glow: rgba(255, 45, 107, 0.6);
+    }
+
+    body.is-birthday #confetti-canvas {
+      display: block;
+    }
+
+    #confetti-canvas {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Birthday glow ring */
+    body.is-birthday .card {
+      border-color: rgba(255,45,107,0.4);
+      box-shadow: 0 8px 60px rgba(255,45,107,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: cardGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes cardGlow {
+      0%   { box-shadow: 0 8px 40px rgba(255,45,107,0.2), inset 0 1px 0 rgba(255,255,255,0.07); }
+      100% { box-shadow: 0 8px 80px rgba(255,45,107,0.5), 0 0 120px rgba(240,192,96,0.15), inset 0 1px 0 rgba(255,255,255,0.12); }
+    }
+
+    /* Birthday banner */
+    .bday-banner {
+      display: none;
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease both;
+    }
+    body.is-birthday .bday-banner { display: block; }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .bday-banner .bday-emoji {
+      font-size: 3rem;
+      animation: bounce 1s ease infinite alternate;
+      display: inline-block;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0) scale(1); }
+      to   { transform: translateY(-12px) scale(1.1); }
+    }
+
+    .bday-banner h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2rem, 9vw, 4.5rem);
+      background: linear-gradient(135deg, #ff2d6b, #f0c060, #ff2d6b);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      margin: 8px 0;
+      text-shadow: none;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .bday-banner p {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    /* Birthday special message card */
+    .bday-msg-card {
+      display: none;
+    }
+    body.is-birthday .bday-msg-card { display: block; }
+
+    .bday-msg {
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--muted);
+      text-align: center;
+    }
+    .bday-msg strong {
+      color: var(--gold);
+      font-style: normal;
+      font-weight: 600;
+    }
+    .bday-msg .wish-line {
+      display: block;
+      margin-top: 14px;
+      color: var(--pink);
+      font-size: 1.05rem;
+    }
+
+    /* Firework dots around name on bday */
+    body.is-birthday h1.name {
+      text-shadow: 0 0 40px var(--glow), 0 0 80px rgba(240,192,96,0.3);
+      animation: nameFlare 2s ease-in-out infinite alternate;
+    }
+    @keyframes nameFlare {
+      0%   { text-shadow: 0 0 30px var(--glow), 0 0 60px rgba(240,192,96,0.2); }
+      100% { text-shadow: 0 0 60px var(--glow), 0 0 100px rgba(240,192,96,0.4), 0 0 140px rgba(232,50,90,0.2); }
+    }
+
+    /* Rings animation for birthday */
+    .bday-rings {
+      display: none;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    body.is-birthday .bday-rings { display: flex; }
+    .ring {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      animation: ringPop 1.2s ease-in-out infinite;
+    }
+    .ring:nth-child(1) { background: var(--rose); animation-delay: 0s; }
+    .ring:nth-child(2) { background: var(--gold); animation-delay: 0.2s; }
+    .ring:nth-child(3) { background: var(--pink); animation-delay: 0.4s; }
+    .ring:nth-child(4) { background: var(--lavender); animation-delay: 0.6s; }
+    .ring:nth-child(5) { background: var(--rose); animation-delay: 0.8s; }
+    @keyframes ringPop {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.6); opacity: 1; }
+    }
+
+    /* Birthday age display */
+    .age-display {
+      text-align: center;
+      margin: 10px 0 0;
+    }
+    .age-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .age-label {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 400px) {
+      .time-grid, .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
 
-<main>
-  <h1 class="title">Samia Khan Kajol</h1>
-  
-  <div class="timer-card">
-    <p class="label">Time Since Birth</p>
-    <div class="grid">
-      <div><span class="unit-num" id="y">0</span><div class="unit-label">Years</div></div>
-      <div><span class="unit-num" id="m">0</span><div class="unit-label">Months</div></div>
-      <div><span class="unit-num" id="d">0</span><div class="unit-label">Days</div></div>
-    </div>
-    <div class="grid" style="margin-top: 15px;">
-      <div><span class="unit-num" id="h">00</span><div class="unit-label">Hours</div></div>
-      <div><span class="unit-num" id="min">00</span><div class="unit-label">Mins</div></div>
-      <div><span class="unit-num" id="sec">00</span><div class="unit-label">Secs</div></div>
-    </div>
-    <p class="footer-date">Born: June 1, 2008 👸</p>
+<!-- Stars -->
+<div id="stars"></div>
+
+<!-- Petals -->
+<div id="petals"></div>
+
+<!-- Confetti canvas (birthday only) -->
+<canvas id="confetti-canvas"></canvas>
+
+<div class="page">
+
+  <!-- Birthday Banner (hidden on normal days) -->
+  <div class="bday-banner">
+    <span class="bday-emoji">🎂</span>
+    <h2>Happy Birthday, Kajol!</h2>
+    <p>Today is your special day, my love ✨</p>
   </div>
 
-  <div class="timer-card">
-    <p class="label">Upcoming Birthday</p>
-    <div class="grid">
-      <div><span class="unit-num" id="next-d">00</span><div class="unit-label">Days</div></div>
-      <div><span class="unit-num" id="next-h">00</span><div class="unit-label">Hours</div></div>
-      <div><span class="unit-num" id="next-m">00</span><div class="unit-label">Mins</div></div>
+  <div class="bday-rings">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div>
+  </div>
+
+  <!-- Name -->
+  <span class="heart-icon">❤️</span>
+  <h1 class="name">Samia Khan Kajol</h1>
+  <p class="tagline">my forever person</p>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-heart">✦</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Birthday Special Message Card -->
+  <div class="card bday-msg-card">
+    <p class="card-title">✦ A message from your Yamin ✦</p>
+    <p class="bday-msg">
+      Happy Birthday, Hana 🎂🌸<br/><br/>
+      This is your <strong>first birthday with me</strong>, and even though I can't be beside you today,
+      my heart is completely yours. I am far away, but every single thought of mine is with you right now. 🥺<br/><br/>
+      I am working hard every day — for us, for our future. So that one day I can stand beside you and say:
+      <em style="color:var(--text)"> I kept my promise.</em> 💙<br/><br/>
+      I will always be by your side — through every distance, every struggle, every hard day.
+      You are never alone. And I have one wish for you today —
+      <strong>please wait for me.</strong> I promise it will be worth it. 🌹<br/><br/>
+      <span class="wish-line">🎁 And today is YOUR day — so make a wish. Anything you want. Tell me. Your wish is mine to fulfill. 🌠</span>
+    </p>
+  </div>
+
+  <!-- Time Since Birth -->
+  <div class="card">
+    <p class="card-title">✦ Time Since She Was Born ✦</p>
+    <div class="time-grid">
+      <div class="time-block">
+        <span class="time-num" id="ty">0</span>
+        <span class="time-label">Years</span>
+      </div>
+      <div class="time-block">
+        <span class="time-num" id="tm">0</span>
+        <span class="time-label">Months</span>
+      </div>
+      <div class="time-block">
+        <span class="time-num" id="td">0</span>
+        <span class="time-label">Days</span>
+      </div>
+      <div class="time-block">
+        <span class="time-num" id="th">00</span>
+        <span class="time-label">Hours</span>
+      </div>
     </div>
-    <div style="margin-top: 10px;">
-        <span class="unit-num" id="next-s" style="font-size: 1.5rem;">00</span>
-        <div class="unit-label">Seconds Left</div>
+    <div class="time-grid" style="margin-top:10px; grid-template-columns: repeat(2,1fr);">
+      <div class="time-block">
+        <span class="time-num" id="tmin">00</span>
+        <span class="time-label">Minutes</span>
+      </div>
+      <div class="time-block">
+        <span class="time-num" id="tsec">00</span>
+        <span class="time-label">Seconds</span>
+      </div>
+    </div>
+    <p class="born-info" style="margin-top:18px;">
+      Born: <span>June 1, 2008</span> 👸
+    </p>
+    <!-- Birthday age (only shows on bday) -->
+    <div id="age-section" class="age-display" style="display:none; margin-top:20px;">
+      <div class="age-num" id="age-num">18</div>
+      <div class="age-label">years of magic ✨</div>
     </div>
   </div>
-</main>
+
+  <!-- Countdown (hidden on birthday) -->
+  <div class="card" id="countdown-card">
+    <p class="card-title">✦ Until Her Next Birthday ✦</p>
+    <div class="countdown-grid">
+      <div class="cd-block">
+        <span class="cd-num" id="cd">0</span>
+        <span class="cd-label">Days</span>
+      </div>
+      <div class="cd-block">
+        <span class="cd-num" id="ch">00</span>
+        <span class="cd-label">Hours</span>
+      </div>
+      <div class="cd-block">
+        <span class="cd-num" id="cmin">00</span>
+        <span class="cd-label">Minutes</span>
+      </div>
+      <div class="cd-block">
+        <span class="cd-num" id="csec">00</span>
+        <span class="cd-label">Seconds</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Love Note -->
+  <div class="card">
+    <p class="card-title">✦ Always ✦</p>
+    <p class="love-note">
+      No matter how far the distance,<br/>
+      no matter how long the wait —<br/>
+      <em>you are my reason</em> to keep going. 🌹<br/><br/>
+      I love you, Hana.<br/>
+      <em>Always and forever.</em> 💙
+    </p>
+  </div>
+
+  <div class="footer">made with love · yamin ❤️ kajol</div>
+</div>
 
 <script>
-function updateTimers() {
-  const birthDate = new Date('2008-06-01T00:00:00');
-  const now = new Date();
-  
-  let y = now.getFullYear() - birthDate.getFullYear();
-  let m = now.getMonth() - birthDate.getMonth();
-  let d = now.getDate() - birthDate.getDate();
-  if (d < 0) { m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
-  if (m < 0) { y--; m += 12; }
+  /* ── STARS ── */
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${size}px;
+      height:${size}px;
+      --d:${Math.random()*3+1.5}s;
+      --o:${Math.random()*0.7+0.2};
+      animation-delay:${Math.random()*4}s;
+    `;
+    starsEl.appendChild(s);
+  }
 
-  const diff = now - birthDate;
-  const h = Math.floor((diff / 3600000) % 24);
-  const min = Math.floor((diff / 60000) % 60);
-  const sec = Math.floor((diff / 1000) % 60);
+  /* ── PETALS ── */
+  const petalsEl = document.getElementById('petals');
+  const petalEmojis = ['🌸','🌹','✿','❀','🌺','💮','🏵️'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
+    const drift = (Math.random()-0.5)*200;
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      --fs:${Math.random()*14+10}px;
+      --dur:${Math.random()*8+6}s;
+      --delay:-${Math.random()*10}s;
+      --drift:${drift}px;
+    `;
+    petalsEl.appendChild(p);
+  }
 
-  document.getElementById('y').innerText = y;
-  document.getElementById('m').innerText = m;
-  document.getElementById('d').innerText = d;
-  document.getElementById('h').innerText = String(h).padStart(2, '0');
-  document.getElementById('min').innerText = String(min).padStart(2, '0');
-  document.getElementById('sec').innerText = String(sec).padStart(2, '0');
+  /* ── DATE HELPERS ── */
+  const BIRTH = new Date('2008-06-01T00:00:00');
 
-  let nextBday = new Date(now.getFullYear(), 5, 1);
-  if (now > nextBday) { nextBday.setFullYear(now.getFullYear() + 1); }
-  
-  const timeToBday = nextBday - now;
-  const nD = Math.floor(timeToBday / (1000 * 60 * 60 * 24));
-  const nH = Math.floor((timeToBday % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const nM = Math.floor((timeToBday % (1000 * 60 * 60)) / (1000 * 60));
-  const nS = Math.floor((timeToBday % (1000 * 60)) / 1000);
+  function isBirthday() {
+    const now = new Date();
+    return now.getMonth() === 5 && now.getDate() === 1; // June = month 5
+  }
 
-  document.getElementById('next-d').innerText = String(nD).padStart(2, '0');
-  document.getElementById('next-h').innerText = String(nH).padStart(2, '0');
-  document.getElementById('next-m').innerText = String(nM).padStart(2, '0');
-  document.getElementById('next-s').innerText = String(nS).padStart(2, '0');
-}
+  function getAge(now) {
+    let years = now.getFullYear() - BIRTH.getFullYear();
+    let months = now.getMonth() - BIRTH.getMonth();
+    let days = now.getDate() - BIRTH.getDate();
+    if (days < 0) { months--; days += 30; }
+    if (months < 0) { years--; months += 12; }
+    return { years, months, days };
+  }
 
-setInterval(updateTimers, 1000);
-updateTimers();
+  function pad(n) { return String(n).padStart(2,'0'); }
 
-const emojis = ['👸','🎈','✨','🎉','🎊','🎂'];
-function spawnEmoji() {
-  const e = document.createElement('div');
-  e.className = 'emoji';
-  e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-  e.style.left = Math.random() * 100 + 'vw';
-  e.style.fontSize = (Math.random() * 30 + 25) + 'px';
-  const duration = 4 + Math.random() * 3;
-  e.style.animationDuration = duration + 's';
-  document.body.appendChild(e);
-  setTimeout(() => e.remove(), duration * 1000);
-}
-setInterval(spawnEmoji, 400);
+  /* ── TIMERS ── */
+  function updateTimeSinceBirth() {
+    const now = new Date();
+    const diff = now - BIRTH;
+    const totalSec = Math.floor(diff / 1000);
+    const sec  = totalSec % 60;
+    const min  = Math.floor(totalSec / 60) % 60;
+    const hour = Math.floor(totalSec / 3600) % 24;
+    const { years, months, days } = getAge(now);
+    document.getElementById('ty').textContent = years;
+    document.getElementById('tm').textContent = months;
+    document.getElementById('td').textContent = days;
+    document.getElementById('th').textContent = pad(hour);
+    document.getElementById('tmin').textContent = pad(min);
+    document.getElementById('tsec').textContent = pad(sec);
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    let next = new Date(now.getFullYear(), 5, 1); // June 1 this year
+    if (now >= next) next = new Date(now.getFullYear()+1, 5, 1);
+    const diff = next - now;
+    const totalSec = Math.floor(diff / 1000);
+    const sec  = totalSec % 60;
+    const min  = Math.floor(totalSec / 60) % 60;
+    const hour = Math.floor(totalSec / 3600) % 24;
+    const days = Math.floor(totalSec / 86400);
+    document.getElementById('cd').textContent = days;
+    document.getElementById('ch').textContent = pad(hour);
+    document.getElementById('cmin').textContent = pad(min);
+    document.getElementById('csec').textContent = pad(sec);
+  }
+
+  /* ── BIRTHDAY MODE ── */
+  if (isBirthday()) {
+    document.body.classList.add('is-birthday');
+    document.getElementById('countdown-card').style.display = 'none';
+    const ageSection = document.getElementById('age-section');
+    ageSection.style.display = 'block';
+    const now = new Date();
+    const age = now.getFullYear() - BIRTH.getFullYear();
+    document.getElementById('age-num').textContent = age;
+    startConfetti();
+  }
+
+  setInterval(() => {
+    updateTimeSinceBirth();
+    if (!isBirthday()) updateCountdown();
+  }, 1000);
+  updateTimeSinceBirth();
+  if (!isBirthday()) updateCountdown();
+
+  /* ── CONFETTI ── */
+  function startConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    const colors = ['#ff2d6b','#f0c060','#f472b6','#c084fc','#fb923c','#34d399','#60a5fa'];
+    const pieces = Array.from({length:160}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 7 + 3,
+      d: Math.random() * 160 + 40,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      tilt: Math.floor(Math.random()*10)-10,
+      tiltAngle: 0,
+      tiltAngleInc: (Math.random()*0.07)+0.05,
+      shape: Math.random() > 0.5 ? 'circle' : 'rect',
+    }));
+    let angle = 0;
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      angle += 0.01;
+      pieces.forEach(p => {
+        p.tiltAngle += p.tiltAngleInc;
+        p.y += (Math.cos(angle+p.d)+1+p.r/3);
+        p.x += Math.sin(angle);
+        p.tilt = Math.sin(p.tiltAngle) * 12;
+        if (p.y > canvas.height) {
+          p.x = Math.random()*canvas.width;
+          p.y = -10;
+        }
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        if (p.shape === 'circle') {
+          ctx.arc(p.x+p.tilt, p.y, p.r, 0, 2*Math.PI);
+        } else {
+          ctx.save();
+          ctx.translate(p.x+p.tilt, p.y);
+          ctx.rotate(p.tiltAngle);
+          ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
+          ctx.restore();
+          return;
+        }
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  }
 </script>
-
 </body>
 </html>
